@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from app.database import close_db, init_db
 
 
 @asynccontextmanager
@@ -18,7 +19,7 @@ async def lifespan(app: FastAPI):
     """
     print("🚀 Запуск приложения...")
 
-    # await init_db()
+    await init_db()
     print("✅ База данных инициализирована")
 
     # await init_base_data()
@@ -27,7 +28,7 @@ async def lifespan(app: FastAPI):
     yield
 
     print("🛑 Остановка приложения...")
-    # await close_db()
+    await close_db()
     print("✅ Соединения закрыты")
 
 
