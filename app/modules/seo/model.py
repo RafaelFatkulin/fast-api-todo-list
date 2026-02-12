@@ -3,11 +3,10 @@ from typing import Optional
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, TimestampMixin
+from app.modules.core.model import BaseModel, TimestampMixin
 
 
-class SEO(Base, IdMixin, TimestampMixin):
+class SEO(BaseModel, TimestampMixin):
     """
     Модель SEO параметров
     Можно привязать как к конкретной сущности, так и к странице

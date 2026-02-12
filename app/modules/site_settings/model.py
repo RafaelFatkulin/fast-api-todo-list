@@ -3,11 +3,10 @@ from typing import Optional
 from sqlalchemy import Boolean, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, TimestampMixin
+from app.modules.core.model import BaseModel, TimestampMixin
 
 
-class SiteSetting(Base, IdMixin, TimestampMixin):
+class SiteSetting(BaseModel, TimestampMixin):
     """
     Модель настроек сайта
     Хранит различные параметры: телефоны, email, соц.сети и т.д.

@@ -3,12 +3,14 @@ from typing import Optional
 
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.sql.sqltypes import Integer
+
+from app.modules.core.database import Base
 
 
-class IdMixin:
-    """Миксин для поля ID"""
-
-    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+class BaseModel(Base):
+    __abstract__ = True
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
 
 
 class TimestampMixin:

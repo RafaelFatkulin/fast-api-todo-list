@@ -17,7 +17,6 @@ class Base(DeclarativeBase):
 
     pass
 
-
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """
     Dependency для получения сессии БД

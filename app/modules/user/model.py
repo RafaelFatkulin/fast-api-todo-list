@@ -4,19 +4,18 @@ from typing import List, Optional
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, SoftDeleteMixin, TimestampMixin
+from app.modules.core.model import BaseModel, SoftDeleteMixin, TimestampMixin
 from app.modules.role.model import Role
 
 user_roles = Table(
     "user_roles",
-    Base.metadata,
+    BaseModel.metadata,
     Column("user_id", Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
     Column("role_id", Integer, ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
 )
 
 
-class User(Base, IdMixin, TimestampMixin, SoftDeleteMixin):
+class User(BaseModel, TimestampMixin, SoftDeleteMixin):
     """Модель пользователя"""
 
     __tablename__ = "users"
@@ -40,7 +39,7 @@ class User(Base, IdMixin, TimestampMixin, SoftDeleteMixin):
     )
 
 
-class RefreshToken(Base, IdMixin, TimestampMixin):
+class RefreshToken(BaseModel, TimestampMixin):
     """Модель для хранения Refresh Tokens"""
 
     __tablename__ = "refresh_tokens"

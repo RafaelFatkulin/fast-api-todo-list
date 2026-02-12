@@ -3,14 +3,13 @@ from typing import List, Optional
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, TimestampMixin
+from app.modules.core.model import BaseModel, TimestampMixin
 from app.modules.user.model import User
 
 # Таблица связи many-to-many между Role и Permission
 role_permissions = Table(
     "role_permissions",
-    Base.metadata,
+    BaseModel.metadata,
     Column("role_id", Integer, ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
     Column(
         "permission_id", Integer, ForeignKey("permissions.id", ondelete="CASCADE"), primary_key=True
@@ -18,7 +17,7 @@ role_permissions = Table(
 )
 
 
-class Role(Base, IdMixin, TimestampMixin):
+class Role(BaseModel, TimestampMixin):
     """
     Модель роли пользователя
     """
@@ -38,7 +37,7 @@ class Role(Base, IdMixin, TimestampMixin):
     )
 
 
-class Permission(Base, IdMixin, TimestampMixin):
+class Permission(BaseModel, TimestampMixin):
     """
     Модель прав доступа
     """

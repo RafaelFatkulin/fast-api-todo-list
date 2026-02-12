@@ -4,8 +4,7 @@ from typing import Optional
 from sqlalchemy import BigInteger, Enum, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, SoftDeleteMixin, TimestampMixin
+from app.modules.core.model import BaseModel, SoftDeleteMixin, TimestampMixin
 
 
 class FileType(str, PyEnum):
@@ -19,7 +18,7 @@ class FileType(str, PyEnum):
     OTHER = "other"
 
 
-class File(Base, IdMixin, TimestampMixin, SoftDeleteMixin):
+class File(BaseModel, TimestampMixin, SoftDeleteMixin):
     """
     Универсальная модель файлов
     Можно привязать к любой сущности через entity_type и entity_id

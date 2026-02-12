@@ -3,11 +3,10 @@ from typing import Optional
 from sqlalchemy import Boolean, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.modules.core.database import Base
-from app.modules.core.model import IdMixin, SoftDeleteMixin, TimestampMixin
+from app.modules.core.model import BaseModel, SoftDeleteMixin, TimestampMixin
 
 
-class Page(Base, IdMixin, TimestampMixin, SoftDeleteMixin):
+class Page(BaseModel, TimestampMixin, SoftDeleteMixin):
     """
     Модель динамических страниц
     Например: Политика конфиденциальности, Cookie Policy и т.д.
